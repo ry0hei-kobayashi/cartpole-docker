@@ -1,0 +1,17 @@
+version: '3'
+services:
+  cartpole:
+    image: cartpole-test:latest
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - /tmp/.X11-unix:/tmp/.X11-unix
+    devices:
+      - /dev/dri:/dev/dri
+    environment:
+      DISPLAY: $DISPLAY
+      XDG_RUNTIME_DIR: $XDG_RUNTIME_DIR
+
+    command: python3 chainerrl_test.py
+
